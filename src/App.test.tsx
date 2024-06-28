@@ -43,7 +43,7 @@ test('Should be reset to 0 when Reset button is clicked', async () => {
   const resetElement = screen.getByTestId('reset');
   await userEvent.click(resetElement);
 
-  expect(count).toHaveTextContent('Count: 0');
+  expect(count).toHaveTextContent('Count: 1');
 });
 
 test('Check that useState is called', () => {
