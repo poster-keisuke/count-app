@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import App from './App';
+import App from './Template';
 import * as ReactModule from 'react';
 
 test('Should be display 1 as initial value', async () => {
