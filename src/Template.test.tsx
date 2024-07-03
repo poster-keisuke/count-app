@@ -1,17 +1,18 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import * as path from 'path';
 import App from './Template';
-import * as ReactModule from 'react';
+import * as Parser from './parser';
 
-test('Should be display 1 as initial value', async () => {
+test('初期値が表示される', async () => {
   render(<App />);
   screen.getByTestId('increase');
   const count = screen.getByText('Count: 1');
   expect(count).toHaveTextContent('Count: 1');
 });
 
-test('Should be increased by 1 when Increase button is clicked', async () => {
+test('カウントボタンを1回クリックすると値が1増える', async () => {
   render(<App />);
   // Count up to 2
   const countElement = screen.getByTestId('increase');
@@ -20,7 +21,7 @@ test('Should be increased by 1 when Increase button is clicked', async () => {
   expect(count).toHaveTextContent('Count: 2');
 });
 
-test('Should be increased by 1 when Increase button is clicked 3 times', async () => {
+test('カウントボタンを3回クリックすると値が3増える', async () => {
   render(<App />);
   // Count up to 4
   const countElement = screen.getByTestId('increase');
@@ -31,7 +32,7 @@ test('Should be increased by 1 when Increase button is clicked 3 times', async (
   expect(count).toHaveTextContent('Count: 4');
 });
 
-test('Should be reset to 0 when Reset button is clicked', async () => {
+test('リセットボタンを押すと値がリセットされる', async () => {
   render(<App />);
   // Count up to 2
   const countElement = screen.getByTestId('increase');
@@ -43,16 +44,10 @@ test('Should be reset to 0 when Reset button is clicked', async () => {
   const resetElement = screen.getByTestId('reset');
   await userEvent.click(resetElement);
 
-  expect(count).toHaveTextContent('Count: 0');
+  expect(count).toHaveTextContent('Count: 1');
 });
 
-test('Check that useState is called', () => {
-  jest.spyOn(ReactModule, 'useState');
-  render(<App />);
-  expect(ReactModule.useState).toHaveBeenCalled();
-});
-
-test('Should reset count when component is re-rendered', async () => {
+test('リロードした際に、コンポーネントがリレンダリングされ値がリセットされる', async () => {
   const { getByText, unmount } = render(<App />);
   // Count up 1
   const countElement = screen.getByTestId('increase');
@@ -63,4 +58,34 @@ test('Should reset count when component is re-rendered', async () => {
   unmount();
   const { getByText: getByTextAfterRemount } = render(<App />);
   expect(getByTextAfterRemount('Count: 1')).toBeInTheDocument();
+});
+
+test('useStateがimportされている', async () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateImport(filepath)).toBe(true);
+});
+
+test('useStateの引数が1つ以上渡されている', () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateWithInitialValue(filepath)).toBe(true);
+});
+
+test('useStateの引数がNumber型で定義されている', () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateNumberInitialValue(filepath)).toBe(true);
+});
+
+test('useStateがコード内で利用されている', () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateUsage(filepath)).toBe(true);
+});
+
+test('useStateの第一引数が定義されている', () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateHasInitialArgument(filepath)).toBe(true);
+});
+
+test('useStateの第二引数が定義されている', () => {
+  const filepath = path.resolve(__dirname, 'Template.tsx');
+  expect(Parser.checkUseStateHasSetterFunction(filepath)).toBe(true);
 });
