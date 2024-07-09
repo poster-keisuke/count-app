@@ -1,13 +1,11 @@
-import React from 'react';
-
 const App = () => {
   return (
     <div>
       <p>Count: 0</p>
-      <button data-testid='increase' onClick={() => console.log('increase!')}>
+      <button data-testid="increase" onClick={() => console.log("increase!")}>
         Increase
       </button>
-      <button data-testid='reset' onClick={() => console.log('reset!')}>
+      <button data-testid="reset" onClick={() => console.log("reset!")}>
         Reset
       </button>
     </div>

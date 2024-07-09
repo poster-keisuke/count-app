@@ -13,5 +13,4 @@ export const writeResult = (
     filePath,
     JSON.stringify({ expected: expected, result: result }, null, 2)
   );
-  console.log("DONE");
 };
