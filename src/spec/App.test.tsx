@@ -100,7 +100,7 @@ test(TestCases.TestCase10.id, async () => {
   expect(result).toHaveTextContent(expected);
 });
 
-test("リロードした際に、コンポーネントがリレンダリングされ値がリセットされる", async () => {
+test(TestCases.TestCase11.id, async () => {
   const expected = "Count: 1";
   const { getByText, unmount } = render(<App />);
   // Count up 1
