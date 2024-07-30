@@ -2,8 +2,8 @@ import { glob } from "glob";
 import fs from "node:fs";
 import runTest from "./src/spec/index.js";
 
-const getFilesFromFilePath = () => {
-  return glob.sync(`src/spec/__result__/*`);
+const getFilesFromFilePath = (testNamePattern) => {
+  return glob.sync(`src/spec/__result__/${testNamePattern}`);
 };
 
 const formatSyntaxTestResult = (result) => {
@@ -62,7 +62,9 @@ const formatComponentTestResult = (result) => {
 
 export const main = async () => {
   let testNamePattern = process.argv.slice(2);
-  if (!testNamePattern) {
+  if (testNamePattern.length > 0) {
+    testNamePattern = testNamePattern + ".json";
+  } else {
     testNamePattern = "*";
   }
 
