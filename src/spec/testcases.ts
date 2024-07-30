@@ -5,6 +5,7 @@ type TestCase = {
   description_ja: string;
   description_en: string;
   evaluation_code: string;
+  test_type: "SYNTAX" | "COMPONENT";
 };
 
 export const TestCase1: TestCase = {
@@ -16,6 +17,7 @@ export const TestCase1: TestCase = {
   description_en:
     "In this specification, the first variable of the return value of useState is used to output the counted-up value. Therefore, we will check whether the first variable of the return value is correctly defined.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase2: TestCase = {
@@ -27,6 +29,7 @@ export const TestCase2: TestCase = {
   description_en:
     "In this specification, the second variable of the return value of useState is used to change the counted-up value. Therefore, we will check whether the second variable of the return value is correctly defined.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase3: TestCase = {
@@ -38,6 +41,7 @@ export const TestCase3: TestCase = {
   description_en:
     "In this specification, you need to implement a counter using useState. Therefore, we will check whether useState is correctly imported.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase4: TestCase = {
@@ -49,6 +53,7 @@ export const TestCase4: TestCase = {
   description_en:
     "In this specification, you will define and use a value as the initial value of useState. Therefore, we will check whether a value is defined as the initial value.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase5: TestCase = {
@@ -60,6 +65,7 @@ export const TestCase5: TestCase = {
   description_en:
     "In this specification, you will define and use a value as the initial value of useState. Also, the counter must be defined as a number. Therefore, we will check whether the value as the initial value is defined as a Number type.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase6: TestCase = {
@@ -71,6 +77,7 @@ export const TestCase6: TestCase = {
   description_en:
     "In this specification, you will implement a counter app using useState. Therefore, we will check whether useState is correctly used in the code.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase7: TestCase = {
@@ -82,6 +89,7 @@ export const TestCase7: TestCase = {
   description_en:
     "Check that the initial value of useState is displayed on the screen. If it is displayed correctly, Count will show 1.",
   evaluation_code: `node ./run.js`,
+  test_type: "SYNTAX"
 };
 
 export const TestCase8: TestCase = {
@@ -93,6 +101,7 @@ export const TestCase8: TestCase = {
   description_en:
     "Use the callback function, which is the second argument of useState, to count up. In this test case, we will check that the value of Count increases by 1 when the button is clicked.",
   evaluation_code: `node ./run.js`,
+  test_type: "COMPONENT"
 };
 
 export const TestCase9: TestCase = {
@@ -105,6 +114,7 @@ export const TestCase9: TestCase = {
   description_en:
     "Use the callback function, which is the second argument of useState, to count up. In this test case, we will check that the value of Count increases by 3 when the button is clicked three times.",
   evaluation_code: `node ./run.js`,
+  test_type: "COMPONENT"
 };
 
 export const TestCase10: TestCase = {
@@ -116,6 +126,7 @@ export const TestCase10: TestCase = {
   description_en:
     "Reset the value of the count to the initial value. In this test case, we will check that the value of Count is reset to 1 when the reset button is clicked.",
   evaluation_code: `node ./run.js`,
+  test_type: "COMPONENT"
 };
 
 export const TestCase11: TestCase = {
@@ -129,6 +140,7 @@ export const TestCase11: TestCase = {
   description_en:
     "By reloading, the component is re-rendered, and the value of the count is reset.",
   evaluation_code: `node ./run.js`,
+  test_type: "COMPONENT"
 };
 
 export const TestCases: TestCase[] = [
