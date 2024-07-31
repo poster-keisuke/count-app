@@ -9,14 +9,13 @@ const getFilesFromFilePath = (testNamePattern) => {
 const formatSyntaxTestResult = (result) => {
   return [
     {
-      type: "mark",
-      value: result.expected === result.result ? true : false,
-    },
-    {
       type: "header",
       value: {
-        ja: result.title.ja,
-        en: result.title.en,
+        startIcon: result.expected === result.result ? "CHECK" : "CROSS",
+        text: {
+          ja: result.title.ja,
+          en: result.title.en,
+        },
       },
     },
     {
@@ -32,14 +31,13 @@ const formatSyntaxTestResult = (result) => {
 const formatComponentTestResult = (result) => {
   return [
     {
-      type: "mark",
-      value: result.expected === result.result ? true : false,
-    },
-    {
       type: "header",
       value: {
-        ja: result.title.ja,
-        en: result.title.en,
+        startIcon: result.expected === result.result ? "CHECK" : "CROSS",
+        text: {
+          ja: result.title.ja,
+          en: result.title.en,
+        },
       },
     },
     {
